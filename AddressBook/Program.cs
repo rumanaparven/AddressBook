@@ -18,7 +18,8 @@ namespace AddressBook
                 Console.WriteLine("1. Add Contact.");
                 Console.WriteLine("2. View all Contacts.");
                 Console.WriteLine("3.Edit existing contacts.");
-                Console.WriteLine("4.Exit.");
+                Console.WriteLine("4.Remove a contact.");
+                Console.WriteLine("5.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -65,11 +66,17 @@ namespace AddressBook
                     String newnumber= Console.ReadLine();
                     ab.EditNumber(ename, newnumber);
                 }
+                else if (choice == 4)
+                {
+                    Console.WriteLine("Enter the name :");
+                    String rname = Console.ReadLine();
+                    ab.RemoveContact(rname);
+                }
                 else
                 {
                     break;
                 }
-            } while (choice != 4);
+            } while (choice != 5);
         } 
     }
 }
