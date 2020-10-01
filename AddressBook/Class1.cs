@@ -48,6 +48,10 @@ namespace AddressBook
         {
             return phoneNo;
         }
+        public void SetPhoneNo(String phoneNo)
+        {
+            this.phoneNo = phoneNo;
+        }
         public String GetEmail()
         {
             return email;

@@ -17,7 +17,8 @@ namespace AddressBook
                 Console.WriteLine("Enter your choice :");
                 Console.WriteLine("1. Add Contact.");
                 Console.WriteLine("2. View all Contacts.");
-                Console.WriteLine("3.Exit.");
+                Console.WriteLine("3.Edit existing contacts.");
+                Console.WriteLine("4.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -56,11 +57,19 @@ namespace AddressBook
                         Console.WriteLine("Email ID : "+ cl.GetEmail());
                     }
                 }
+                else if (choice == 3)
+                {
+                    Console.WriteLine("Enter the name :");
+                    String ename=Console.ReadLine();
+                    Console.WriteLine("Enter the new number for " + ename);
+                    String newnumber= Console.ReadLine();
+                    ab.EditNumber(ename, newnumber);
+                }
                 else
                 {
                     break;
                 }
-            } while (choice != 3);
+            } while (choice != 4);
         } 
     }
 }
