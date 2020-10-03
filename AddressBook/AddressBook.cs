@@ -25,7 +25,8 @@ namespace AddressBook
         }
         public Class1 ViewByKeyName(string kname)
         {
-            foreach(KeyValuePair<string, Class1> kvp in d)
+            
+            foreach (KeyValuePair<string, Class1> kvp in d)
             {
                 if (kvp.Key == kname)
                     return kvp.Value;
@@ -38,26 +39,40 @@ namespace AddressBook
         }
         public void EditNumber(String ename,String newnumber)
         {
-            foreach(Class1 cc in list)
+            Boolean flag = false;
+            foreach (Class1 cc in list)
             {
                 if (cc.GetName().Equals(ename))
                 {
+                    flag = true;
                     cc.SetPhoneNo(newnumber);
                     Console.WriteLine("Number edited successfully");
                     break;
                 }
             }
+                if (!flag)
+                {
+                    Console.WriteLine("No such name found!!!");
+                }
+            
+
         }
         public void RemoveContact(String rname)
         {
+            Boolean flag = false;
             foreach (Class1 cc in list)
             {
                 if (cc.GetName().Equals(rname))
                 {
+                    flag = true;
                     list.Remove(cc);
                     Console.WriteLine("Number removed successfully");
                     break;
                 }
+            }
+            if (!flag)
+            {
+                Console.WriteLine("No such name found!!!");
             }
         }
     }
