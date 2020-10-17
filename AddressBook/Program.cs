@@ -29,11 +29,23 @@ namespace AddressBook
 
                     Console.WriteLine("Enter your Name : ");
                     String name = Console.ReadLine();
+                    //bool ifDuplicate = ab.UC7_CheckForDuplicateEntry(name);
                     Regex reg4 = new Regex(@"(^[a-z A-Z]*$)");
                     while (!reg4.IsMatch(name))
                     {
                         Console.WriteLine("Enter a valid name : ");
                         name = Console.ReadLine();
+                    }
+                    while (ab.UC7_CheckForDuplicateEntry(name))
+                    {
+                        Console.WriteLine("This name already exists in the address book.");
+                        Console.WriteLine("Please enter a new name : ");
+                        name = Console.ReadLine();
+                        while (!reg4.IsMatch(name))
+                        {
+                            Console.WriteLine("Enter a valid name : ");
+                            name = Console.ReadLine();
+                        }
                     }
                     Console.WriteLine("Enter your address : ");
                     String address = Console.ReadLine();
@@ -85,15 +97,16 @@ namespace AddressBook
                     }
                     Console.WriteLine("Enter the key name to be saved in the address book : ");
                     String keyname = Console.ReadLine();
-                    Regex reg3 = new Regex(@"(^[a-z A-Z]$)");
+                    Regex reg3 = new Regex("^[A-Z a-z]*$");
                     while (!reg3.IsMatch(keyname))
                     {
-                        Console.WriteLine("Enter a a valid name : ");
+                        Console.WriteLine("Enter a valid name : ");
                         keyname = Console.ReadLine();
                     }
                     Class1 c = new Class1(name, address, city, state, zip, contactNo, mailID);
+       
+                    ab.AddAddress(keyname, c);
                     
-                    ab.AddAddress(keyname,c);
                 }
                 else if (choice == 2)
                 {

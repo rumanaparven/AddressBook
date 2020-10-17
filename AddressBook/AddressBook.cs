@@ -75,5 +75,21 @@ namespace AddressBook
                 Console.WriteLine("No such name found!!!");
             }
         }
+        public bool UC7_CheckForDuplicateEntry(string name)
+        {
+            foreach (Class1 c in list)
+            {
+                if (c.GetName().Equals(name))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        
+            
+
+        
     }
 }
