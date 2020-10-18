@@ -20,8 +20,9 @@ namespace AddressBook
                 Console.WriteLine("2. View all Contacts.");
                 Console.WriteLine("3.Edit existing contacts.");
                 Console.WriteLine("4.Remove a contact.");
-                Console.WriteLine("5.View AddressBook fora key name.");
-                Console.WriteLine("6.Exit.");
+                Console.WriteLine("5.View AddressBook for a key name.");
+                Console.WriteLine("6.Search person by city/state name.");
+                Console.WriteLine("7.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -29,7 +30,6 @@ namespace AddressBook
 
                     Console.WriteLine("Enter your Name : ");
                     String name = Console.ReadLine();
-                    //bool ifDuplicate = ab.UC7_CheckForDuplicateEntry(name);
                     Regex reg4 = new Regex(@"(^[a-z A-Z]*$)");
                     while (!reg4.IsMatch(name))
                     {
@@ -163,11 +163,29 @@ namespace AddressBook
                         Console.WriteLine("Email ID : " + cc.GetEmail());
                     }
                 }
+                else if (choice == 6)
+                {
+                    Console.WriteLine("Enter the name of the city/state : ");
+                    string location = Console.ReadLine();
+                    List<Class1> li = ab.UC8_SearchPeopleByCityOrState(location);
+                    if (li.Count!=0)
+                    {
+                        Console.WriteLine("There are " + li.Count + " contacts with location " + location);
+                        foreach(Class1 cc in li)
+                        {
+                            Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No contact found!!!");
+                    }
+                }
                 else
                 {
                     break;
                 }
-            } while (choice != 6);
+            } while (choice != 7);
         } 
     }
 }

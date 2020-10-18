@@ -9,6 +9,8 @@ namespace AddressBook
     {
         private List<Class1> list = new List<Class1>();
         private Dictionary<string, Class1> d = new Dictionary<string, Class1>();
+        private Dictionary<string, Class1> cityDictionary = new Dictionary<string, Class1>();
+        private Dictionary<string, Class1> stateDictionary = new Dictionary<string, Class1>();
         public List<Class1> GetList()
         {
             return list;
@@ -85,6 +87,37 @@ namespace AddressBook
                 }
             }
             return false;
+        }
+       
+        
+
+        public List<Class1> UC8_SearchPeopleByCityOrState(string location)
+        {
+            foreach (Class1 c in list)
+            {
+                cityDictionary.Add(c.GetCity(), c);
+            }
+            foreach (Class1 c in list)
+            {
+                stateDictionary.Add(c.GetState(), c);
+            }
+
+            List<Class1> listofpeople = new List<Class1>();
+            foreach(KeyValuePair<string,Class1> kvp in cityDictionary)
+            {
+                if (kvp.Key.Equals(location))
+                {
+                    listofpeople.Add(kvp.Value);
+                }
+            }
+            foreach (KeyValuePair<string, Class1> kvp in stateDictionary)
+            {
+                if (kvp.Key.Equals(location))
+                {
+                    listofpeople.Add(kvp.Value);
+                }
+            }
+            return listofpeople;
         }
         
         
