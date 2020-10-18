@@ -93,13 +93,17 @@ namespace AddressBook
 
         public List<Class1> UC8_SearchPeopleByCityOrState(string location)
         {
+            
+           
             foreach (Class1 c in list)
             {
                 cityDictionary.Add(c.GetCity(), c);
+                
             }
             foreach (Class1 c in list)
             {
                 stateDictionary.Add(c.GetState(), c);
+                
             }
 
             List<Class1> listofpeople = new List<Class1>();
@@ -119,10 +123,55 @@ namespace AddressBook
             }
             return listofpeople;
         }
-        
-        
-            
+        public void AddressByCity()
+        {
+            HashSet<string> citySet = new HashSet<string>();
+            foreach (Class1 c in list)
+            {
+                
+                citySet.Add(c.GetCity());
+            }
+            foreach(string s in citySet)
+            {
+                Console.WriteLine("Contacts with address " + s + " are : ");
+                Console.WriteLine();
+                foreach(Class1 cc in list) { 
+                
+                    if (cc.GetCity().Equals(s))
+                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+                
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
 
-        
+        public void AddressByState()
+        {
+            HashSet<string> stateSet = new HashSet<string>();
+            foreach (Class1 c in list)
+            {
+                
+                stateSet.Add(c.GetState());
+            }
+            foreach (string s in stateSet)
+            {
+                Console.WriteLine("Contacts with address " + s + " are : ");
+                Console.WriteLine();
+                foreach (Class1 cc in list)
+                {
+
+                    if (cc.GetState().Equals(s))
+                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+        }
+
+
+
     }
 }

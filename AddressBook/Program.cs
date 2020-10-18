@@ -22,7 +22,9 @@ namespace AddressBook
                 Console.WriteLine("4.Remove a contact.");
                 Console.WriteLine("5.View AddressBook for a key name.");
                 Console.WriteLine("6.Search person by city/state name.");
-                Console.WriteLine("7.Exit.");
+                Console.WriteLine("7.View persons by city.");
+                Console.WriteLine("8.View persons by state");
+                Console.WriteLine("9.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -103,7 +105,7 @@ namespace AddressBook
                         Console.WriteLine("Enter a valid name : ");
                         keyname = Console.ReadLine();
                     }
-                    Class1 c = new Class1(name, address, city, state, zip, contactNo, mailID);
+                    Class1 c = new Class1(name, address, city.ToUpper(), state.ToUpper(), zip, contactNo, mailID);
        
                     ab.AddAddress(keyname, c);
                     
@@ -174,18 +176,29 @@ namespace AddressBook
                         foreach(Class1 cc in li)
                         {
                             Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+
                         }
+                        
                     }
                     else
                     {
                         Console.WriteLine("No contact found!!!");
                     }
                 }
+                else if (choice == 7)
+                {
+                    ab.AddressByCity();
+                       
+                }
+                else if (choice == 8)
+                {
+                    ab.AddressByState();
+                }
                 else
                 {
                     break;
                 }
-            } while (choice != 7);
+            } while (choice != 9);
         } 
     }
 }
