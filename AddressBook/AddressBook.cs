@@ -133,7 +133,15 @@ namespace AddressBook
             }
             foreach(string s in citySet)
             {
-                Console.WriteLine("Contacts with address " + s + " are : ");
+                int count = 0;
+                foreach (Class1 c in list)
+                {
+                    if (c.GetCity().Equals(s))
+                    {
+                        count++;
+                    }
+                }
+                Console.WriteLine("There are "+count+" contacts with address " + s);
                 Console.WriteLine();
                 foreach(Class1 cc in list) { 
                 
@@ -156,7 +164,15 @@ namespace AddressBook
             }
             foreach (string s in stateSet)
             {
-                Console.WriteLine("Contacts with address " + s + " are : ");
+                int count = 0;
+                foreach (Class1 c in list)
+                {
+                    if (c.GetState().Equals(s))
+                    {
+                        count++;
+                    }
+                }
+                Console.WriteLine("There are " + count + " contacts with address " + s);
                 Console.WriteLine();
                 foreach (Class1 cc in list)
                 {
