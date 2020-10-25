@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Transactions;
 using System.Xml.Serialization;
@@ -24,7 +25,8 @@ namespace AddressBook
                 Console.WriteLine("6.Search person by city/state name.");
                 Console.WriteLine("7.View persons by city.");
                 Console.WriteLine("8.View persons by state");
-                Console.WriteLine("9.Exit.");
+                Console.WriteLine("9.Print all contacts from text file.");
+                Console.WriteLine("10.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
 
                 if (choice == 1)
@@ -106,9 +108,15 @@ namespace AddressBook
                         keyname = Console.ReadLine();
                     }
                     Class1 c = new Class1(name, address, city.ToUpper(), state.ToUpper(), zip, contactNo, mailID);
-       
-                    ab.AddAddress(keyname, c);
                     
+                    ab.AddAddress(keyname, c);
+
+                    string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
+                    string text = "Name : " + name + "  Address : " + address + "  City : " + city + "  State : " + state + "  zip : " + zip + "  Contact No. : " + contactNo + "  Email ID : " + mailID+"\n";
+
+                    File.AppendAllText(path, text);
+
+
                 }
                 else if (choice == 2)
                 {
@@ -199,11 +207,15 @@ namespace AddressBook
                 {
                     ab.AddressByState();
                 }
+                else if (choice == 9)
+                {
+                    ab.ReadAllText();
+                }
                 else
                 {
                     break;
                 }
-            } while (choice != 9);
+            } while (choice != 10);
         } 
     }
 }

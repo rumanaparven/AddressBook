@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -211,9 +212,19 @@ namespace AddressBook
             }
 
         }
-        
-           
 
-        
+
+        public void ReadAllText()
+        {
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
+            string lines;
+            lines = File.ReadAllText(path);
+            Console.WriteLine(lines);
+            
+        }
+
+
+
+
     }
 }
