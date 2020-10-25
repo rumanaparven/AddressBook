@@ -112,7 +112,12 @@ namespace AddressBook
                 }
                 else if (choice == 2)
                 {
-                    List<Class1> li = ab.ViewAddressBook();
+                    Console.WriteLine("1.Sort by Name");
+                    Console.WriteLine("2.Sort by City");
+                    Console.WriteLine("3.Sort by State");
+                    Console.WriteLine("4.Sort by Zip");
+                    int input = Convert.ToInt32(Console.ReadLine());
+                    List<Class1> li = ab.ViewAddressBook(input);
                     if (li.Count == 0)
                     {
                         Console.WriteLine("The address book is empty.");
