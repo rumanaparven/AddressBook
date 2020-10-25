@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -11,6 +13,7 @@ namespace AddressBook
         private Dictionary<string, Class1> d = new Dictionary<string, Class1>();
         private Dictionary<string, Class1> cityDictionary = new Dictionary<string, Class1>();
         private Dictionary<string, Class1> stateDictionary = new Dictionary<string, Class1>();
+       
         public List<Class1> GetList()
         {
             return list;
@@ -37,6 +40,7 @@ namespace AddressBook
         }
         public List<Class1> ViewAddressBook()
         {
+            SortByName();
             return list;
         }
         public void EditNumber(String ename,String newnumber)
@@ -184,6 +188,11 @@ namespace AddressBook
                 Console.WriteLine();
                 Console.WriteLine();
             }
+
+        }
+        public void SortByName()
+        {
+            list = list.OrderBy(c => c.GetName()).ToList();
 
         }
 
