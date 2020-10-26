@@ -209,10 +209,35 @@ namespace AddressBook
                 }
                 else if (choice == 9)
                 {
+                    
+                        string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
+                        if (File.Exists(path))
+                        {
+                        List<Class1> li = ab.ViewAddressBook(1);
+                        foreach(Class1 cc in li)
+                        {
+                            string text = "Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  City : " + cc.GetCity() + "  State : " + cc.GetState() + "  zip : " + cc.GetZip() + "  Contact No. : " + cc.GetPhoneNo() + "  Email ID : " + cc.GetEmail() + "\n";
+                            File.WriteAllText(path,text);
+                        }
+                        
+                        }
+                       
+                    
                     ab.ReadAllText();
                 }
                 else
                 {
+                    string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
+                    if (File.Exists(path))
+                    {
+                        List<Class1> li = ab.ViewAddressBook(1);
+                        foreach (Class1 cc in li)
+                        {
+                            string text = "Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  City : " + cc.GetCity() + "  State : " + cc.GetState() + "  zip : " + cc.GetZip() + "  Contact No. : " + cc.GetPhoneNo() + "  Email ID : " + cc.GetEmail() + "\n";
+                            File.WriteAllText(path, text);
+                        }
+
+                    }
                     break;
                 }
             } while (choice != 10);

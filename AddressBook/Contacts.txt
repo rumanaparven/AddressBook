@@ -1,2 +1,1 @@
-Name : Rumana  Address : abb  City : abb  State : abb  zip : 123456  Contact No. : 8131840170  Email ID : r@gg.com
-Name : Parven  Address : aa  City : hhh  State : bbb  zip : 799282  Contact No. : 9330398228  Email ID : e@nn.ccc
+Name : Rumana  Address : Kailashahar  City : KAILASHSHAR  State : TRIPURA  zip : 799282  Contact No. : 8131840170  Email ID : r@gm.com
