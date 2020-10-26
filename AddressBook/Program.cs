@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Transactions;
@@ -12,7 +14,13 @@ namespace AddressBook
         
         static void Main(string[] args)
         {
-            int choice = 0;
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\import.csv";
+            /*using (StreamWriter sw = new StreamWriter(path))
+            {
+                string text = "name, address, city, state, zip, phoneNo, email";
+                sw.WriteLine(text, path);
+            }*/
+                int choice = 0;
             AddressBook ab = new AddressBook();
             do
             {
@@ -111,12 +119,6 @@ namespace AddressBook
                     
                     ab.AddAddress(keyname, c);
 
-                    string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
-                    string text = "Name : " + name + "  Address : " + address + "  City : " + city + "  State : " + state + "  zip : " + zip + "  Contact No. : " + contactNo + "  Email ID : " + mailID+"\n";
-
-                    File.AppendAllText(path, text);
-
-
                 }
                 else if (choice == 2)
                 {
@@ -132,15 +134,15 @@ namespace AddressBook
                     }
                     else
                     {
-                        foreach (Class1 cl in li)
+                        foreach (Class1 cc in li)
                         {
-                            Console.WriteLine("Name : " + cl.GetName());
-                            Console.WriteLine("Address : " + cl.GetAddress());
-                            Console.WriteLine("City : " + cl.GetCity());
-                            Console.WriteLine("State : " + cl.GetState());
-                            Console.WriteLine("zip : " + cl.GetZip());
-                            Console.WriteLine("Contact No. : " + cl.GetPhoneNo());
-                            Console.WriteLine("Email ID : " + cl.GetEmail());
+                            Console.WriteLine("Name : " + cc.name);
+                            Console.WriteLine("Address : " + cc.address);
+                            Console.WriteLine("City : " + cc.city);
+                            Console.WriteLine("State : " + cc.state);
+                            Console.WriteLine("zip : " + cc.zip);
+                            Console.WriteLine("Contact No. : " + cc.phoneNo);
+                            Console.WriteLine("Email ID : " + cc.email);
                         }
                     }
                 }
@@ -169,13 +171,13 @@ namespace AddressBook
                     }
                     else 
                     {
-                        Console.WriteLine("Name : " + cc.GetName());
-                        Console.WriteLine("Address : " + cc.GetAddress());
-                        Console.WriteLine("City : " + cc.GetCity());
-                        Console.WriteLine("State : " + cc.GetState());
-                        Console.WriteLine("zip : " + cc.GetZip());
-                        Console.WriteLine("Contact No. : " + cc.GetPhoneNo());
-                        Console.WriteLine("Email ID : " + cc.GetEmail());
+                        Console.WriteLine("Name : " + cc.name);
+                        Console.WriteLine("Address : " + cc.address);
+                        Console.WriteLine("City : " + cc.city);
+                        Console.WriteLine("State : " + cc.state);
+                        Console.WriteLine("zip : " + cc.zip);
+                        Console.WriteLine("Contact No. : " + cc.phoneNo);
+                        Console.WriteLine("Email ID : " + cc.email);
                     }
                 }
                 else if (choice == 6)
@@ -188,7 +190,7 @@ namespace AddressBook
                         Console.WriteLine("There are " + li.Count + " contacts with location " + location);
                         foreach(Class1 cc in li)
                         {
-                            Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+                            Console.WriteLine("Name : " + cc.name + "  Address : " + cc.address+ "  ZIP : " + cc.zip + "  Contact No : " + cc.phoneNo + "  EmailID : " + cc.email);
 
                         }
                         
@@ -209,32 +211,41 @@ namespace AddressBook
                 }
                 else if (choice == 9)
                 {
+
                     
-                        string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
-                        if (File.Exists(path))
+                    if (File.Exists(path))
+                    {
+
+                        using (StreamWriter sw = new StreamWriter(path))
+                        using (CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture))
                         {
-                        List<Class1> li = ab.ViewAddressBook(1);
-                        foreach(Class1 cc in li)
-                        {
-                            string text = "Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  City : " + cc.GetCity() + "  State : " + cc.GetState() + "  zip : " + cc.GetZip() + "  Contact No. : " + cc.GetPhoneNo() + "  Email ID : " + cc.GetEmail() + "\n";
-                            File.WriteAllText(path,text);
+                            
+                            List<Class1> li = ab.ViewAddressBook(1);
+                     
+                            cw.WriteRecords(li);
+                            
+                            
                         }
-                        
-                        }
-                       
-                    
+
+                    }
+
+
                     ab.ReadAllText();
                 }
                 else
                 {
-                    string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
+                   
                     if (File.Exists(path))
                     {
-                        List<Class1> li = ab.ViewAddressBook(1);
-                        foreach (Class1 cc in li)
+                        using (StreamWriter sw = new StreamWriter(path))
+                        using (CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture))
                         {
-                            string text = "Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  City : " + cc.GetCity() + "  State : " + cc.GetState() + "  zip : " + cc.GetZip() + "  Contact No. : " + cc.GetPhoneNo() + "  Email ID : " + cc.GetEmail() + "\n";
-                            File.WriteAllText(path, text);
+
+                            List<Class1> li = ab.ViewAddressBook(1);
+
+                            cw.WriteRecords(li);
+
+
                         }
 
                     }

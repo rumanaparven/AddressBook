@@ -4,15 +4,19 @@ using System.Text;
 
 namespace AddressBook
 {
-    class Class1
+    public class Class1
     {
-        private string name;
-        private string address;
-        private string city;
-        private string state;
-        private string zip;
-        private string phoneNo;
-        private string email;
+        public string name { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zip { get; set; }
+        public string phoneNo { get; set; }
+        public string email { get; set; }
+        public Class1()
+        {
+
+        }
 
         public Class1(string name, string address, string city, string state, string zip, string phoneNo, string email)
         {
@@ -24,37 +28,7 @@ namespace AddressBook
             this.phoneNo = phoneNo;
             this.email = email;
         }
-        public String GetName()
-        {
-            return name;
-        }
-        public String GetAddress()
-        {
-            return address;
-        }
-        public String GetCity()
-        {
-            return city;
-        }
-        public String GetState()
-        {
-            return state;
-        }
-        public String GetZip()
-        {
-            return zip;
-        }
-        public String GetPhoneNo()
-        {
-            return phoneNo;
-        }
-        public void SetPhoneNo(String phoneNo)
-        {
-            this.phoneNo = phoneNo;
-        }
-        public String GetEmail()
-        {
-            return email;
-        }
+        
+        
     }
 }

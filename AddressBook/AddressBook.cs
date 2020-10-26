@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace AddressBook
@@ -43,23 +43,23 @@ namespace AddressBook
         {
             if (input == 1)
             {
-                list = list.OrderBy(c => c.GetName()).ToList();
+                list = list.OrderBy(c => c.name).ToList();
 
             }
             else if (input == 1)
             {
 
-                list = list.OrderBy(c => c.GetCity()).ToList();
+                list = list.OrderBy(c => c.city).ToList();
 
             }
             else if (input == 3)
             {
-                list = list.OrderBy(c => c.GetState()).ToList();
+                list = list.OrderBy(c => c.state).ToList();
 
             }
             else
             {
-                list = list.OrderBy(c => c.GetZip()).ToList();
+                list = list.OrderBy(c => c.zip).ToList();
             }
             return list;
            
@@ -69,10 +69,10 @@ namespace AddressBook
             Boolean flag = false;
             foreach (Class1 cc in list)
             {
-                if (cc.GetName().Equals(ename))
+                if (cc.name.Equals(ename))
                 {
                     flag = true;
-                    cc.SetPhoneNo(newnumber);
+                    cc.phoneNo=newnumber;
                     Console.WriteLine("Number edited successfully");
                     break;
                 }
@@ -89,7 +89,7 @@ namespace AddressBook
             Boolean flag = false;
             foreach (Class1 cc in list)
             {
-                if (cc.GetName().Equals(rname))
+                if (cc.name.Equals(rname))
                 {
                     flag = true;
                     list.Remove(cc);
@@ -106,7 +106,7 @@ namespace AddressBook
         {
             foreach (Class1 c in list)
             {
-                if (c.GetName().Equals(name))
+                if (c.name.Equals(name))
                 {
                     return true;
                 }
@@ -122,12 +122,12 @@ namespace AddressBook
            
             foreach (Class1 c in list)
             {
-                cityDictionary.Add(c.GetCity(), c);
+                cityDictionary.Add(c.city, c);
                 
             }
             foreach (Class1 c in list)
             {
-                stateDictionary.Add(c.GetState(), c);
+                stateDictionary.Add(c.state, c);
                 
             }
 
@@ -155,14 +155,14 @@ namespace AddressBook
             foreach (Class1 c in list)
             {
                 
-                citySet.Add(c.GetCity());
+                citySet.Add(c.city);
             }
             foreach(string s in citySet)
             {
                 int count = 0;
                 foreach (Class1 c in list)
                 {
-                    if (c.GetCity().Equals(s))
+                    if (c.city.Equals(s))
                     {
                         count++;
                     }
@@ -171,9 +171,9 @@ namespace AddressBook
                 Console.WriteLine();
                 foreach(Class1 cc in list) { 
                 
-                    if (cc.GetCity().Equals(s))
-                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
-                
+                    if (cc.city.Equals(s))
+                        Console.WriteLine("Name : " + cc.name + "  Address : " + cc.address + "  ZIP : " + cc.zip + "  Contact No : " + cc.phoneNo + "  EmailID : " + cc.email);
+
                 }
                 Console.WriteLine();
                 Console.WriteLine();
@@ -186,14 +186,14 @@ namespace AddressBook
             foreach (Class1 c in list)
             {
                 
-                stateSet.Add(c.GetState());
+                stateSet.Add(c.state);
             }
             foreach (string s in stateSet)
             {
                 int count = 0;
                 foreach (Class1 c in list)
                 {
-                    if (c.GetState().Equals(s))
+                    if (c.state.Equals(s))
                     {
                         count++;
                     }
@@ -203,8 +203,8 @@ namespace AddressBook
                 foreach (Class1 cc in list)
                 {
 
-                    if (cc.GetState().Equals(s))
-                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+                    if (cc.state.Equals(s))
+                        Console.WriteLine("Name : " + cc.name+ "  Address : " + cc.address+ "  ZIP : " + cc.zip + "  Contact No : " + cc.phoneNo + "  EmailID : " + cc.email);
 
                 }
                 Console.WriteLine();
@@ -216,10 +216,24 @@ namespace AddressBook
 
         public void ReadAllText()
         {
-            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\Contacts.txt";
-            string lines;
-            lines = File.ReadAllText(path);
-            Console.WriteLine(lines);
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\import.csv";
+            using(var reader=new StreamReader(path))
+            using(var csv=new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var lists = csv.GetRecords<Class1>().ToList();
+                Console.WriteLine("Read data from AddressBook.cs");
+                foreach(Class1 cc in lists)
+                {
+                    Console.Write("Name : " + cc.name);
+                    Console.Write("\nAddress : " + cc.address);
+                    Console.Write("\nCity : " + cc.city);
+                    Console.Write("\nState : " + cc.state);
+                    Console.Write("\nzip : " + cc.zip);
+                    Console.Write("\nContact No. : " + cc.phoneNo);
+                    Console.Write("\nEmail ID : " + cc.email);
+                    Console.WriteLine();
+                }
+            }
             
         }
 
