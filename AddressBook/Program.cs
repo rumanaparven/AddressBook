@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,7 +15,7 @@ namespace AddressBook
         
         static void Main(string[] args)
         {
-            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\import.csv";
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.csv";
             /*using (StreamWriter sw = new StreamWriter(path))
             {
                 string text = "name, address, city, state, zip, phoneNo, email";
@@ -215,14 +216,14 @@ namespace AddressBook
                     
                     if (File.Exists(path))
                     {
-
+                        Newtonsoft.Json.JsonSerializer ser = new Newtonsoft.Json.JsonSerializer();
                         using (StreamWriter sw = new StreamWriter(path))
-                        using (CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                        using (JsonWriter writer = new JsonTextWriter(sw))
                         {
                             
                             List<Class1> li = ab.ViewAddressBook(1);
-                     
-                            cw.WriteRecords(li);
+
+                            ser.Serialize(writer, li);
                             
                             
                         }
@@ -237,13 +238,14 @@ namespace AddressBook
                    
                     if (File.Exists(path))
                     {
+                        Newtonsoft.Json.JsonSerializer ser = new Newtonsoft.Json.JsonSerializer();
                         using (StreamWriter sw = new StreamWriter(path))
-                        using (CsvWriter cw = new CsvWriter(sw, CultureInfo.InvariantCulture))
+                        using (JsonWriter writer = new JsonTextWriter(sw))
                         {
 
                             List<Class1> li = ab.ViewAddressBook(1);
 
-                            cw.WriteRecords(li);
+                            ser.Serialize(writer, li);
 
 
                         }

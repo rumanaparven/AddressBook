@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "pKS2vdigeONltZaLmhL9khy8JJfmltuGoLtQdb8x3j19DzFLP+ByX7XgRc/hlqM4Ptz8pLSUNMeOYMfqIu3FYg==",
+  "dgSpecHash": "WjbPHZU0Yk38rVS4wbjQZzP+Hh5DMP2NIuqY/aYGw0ss3RkDJ90cFpQfhBWBBFdsNMyQOmFTP1ifkxlegxNgYw==",
   "success": true,
   "projectFilePath": "C:\\Users\\RUMANA\\source\\repos\\AddressBook\\AddressBook\\AddressBook.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\RUMANA\\.nuget\\packages\\csvhelper\\15.0.8\\csvhelper.15.0.8.nupkg.sha512",
-    "C:\\Users\\RUMANA\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512"
+    "C:\\Users\\RUMANA\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\RUMANA\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -216,14 +217,12 @@ namespace AddressBook
 
         public void ReadAllText()
         {
-            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\import.csv";
-            using(var reader=new StreamReader(path))
-            using(var csv=new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                var lists = csv.GetRecords<Class1>().ToList();
-                Console.WriteLine("Read data from AddressBook.cs");
-                foreach(Class1 cc in lists)
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.csv";
+            List<Class1> list = JsonConvert.DeserializeObject<List<Class1>>(File.ReadAllText(path)).ToList();
+
+                foreach (Class1 cc in list )
                 {
+
                     Console.Write("Name : " + cc.name);
                     Console.Write("\nAddress : " + cc.address);
                     Console.Write("\nCity : " + cc.city);
@@ -232,9 +231,11 @@ namespace AddressBook
                     Console.Write("\nContact No. : " + cc.phoneNo);
                     Console.Write("\nEmail ID : " + cc.email);
                     Console.WriteLine();
+
                 }
-            }
+
             
+
         }
 
 
