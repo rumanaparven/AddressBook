@@ -217,19 +217,19 @@ namespace AddressBook
 
         public void ReadAllText()
         {
-            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.csv";
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.json";
             List<Class1> list = JsonConvert.DeserializeObject<List<Class1>>(File.ReadAllText(path)).ToList();
 
                 foreach (Class1 cc in list )
                 {
 
                     Console.Write("Name : " + cc.name);
-                    Console.Write("\nAddress : " + cc.address);
-                    Console.Write("\nCity : " + cc.city);
-                    Console.Write("\nState : " + cc.state);
-                    Console.Write("\nzip : " + cc.zip);
-                    Console.Write("\nContact No. : " + cc.phoneNo);
-                    Console.Write("\nEmail ID : " + cc.email);
+                    Console.Write(" Address : " + cc.address);
+                    Console.Write(" City : " + cc.city);
+                    Console.Write(" State : " + cc.state);
+                    Console.Write(" zip : " + cc.zip);
+                    Console.Write(" Contact No. : " + cc.phoneNo);
+                    Console.Write(" Email ID : " + cc.email);
                     Console.WriteLine();
 
                 }

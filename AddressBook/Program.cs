@@ -15,7 +15,7 @@ namespace AddressBook
         
         static void Main(string[] args)
         {
-            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.csv";
+            string path = @"C:\Users\RUMANA\source\repos\AddressBook\AddressBook\CSV\export.json";
             /*using (StreamWriter sw = new StreamWriter(path))
             {
                 string text = "name, address, city, state, zip, phoneNo, email";
